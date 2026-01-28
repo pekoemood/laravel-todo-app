@@ -9,10 +9,7 @@
 </head>
 <body>
     <main class="min-h-screen flex flex-col container mx-auto">
-        <h1 class="text-4xl text-center mt-6">Todoリスト</h1>
-        <div>
-            {{ $slot }}
-        </div>
+        {{ $slot }}
     </main>
 </body>
 </html>
