@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Login;
 use App\Http\Controllers\Register;
 use App\Http\Controllers\TodoController;
 use Illuminate\Support\Facades\Route;
@@ -19,3 +20,4 @@ Route::view('/register', 'components.register');
 Route::post('/register', Register::class);
 
 Route::view('/login', 'components.login');
+Route::post('/login', Login::class);
