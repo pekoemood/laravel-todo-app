@@ -17,3 +17,5 @@ Route::patch('/todos/{todo}/toggle', [TodoController::class, 'toggle']);
 
 Route::view('/register', 'components.register');
 Route::post('/register', Register::class);
+
+Route::view('/login', 'components.login');
