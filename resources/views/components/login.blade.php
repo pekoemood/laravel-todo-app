@@ -11,7 +11,7 @@
 
             <div>
                 <label for="password">パスワード</label>
-                <input type="password" name="password" id="password" placeholder="******" required class="block border w-full mt-2">
+                <input type="password" name="password" id="password" placeholder="******" required class="block border w-full mt-2" value="{{ old('password') }}">
             </div>
 
             <button type="submit" class="mt-2 border px-2 rounded-md bg-blue-500 text-white">登録</button>
