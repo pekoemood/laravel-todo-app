@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Login;
+use App\Http\Controllers\LogoutController;
 use App\Http\Controllers\Register;
 use App\Http\Controllers\TodoController;
 use Illuminate\Support\Facades\Route;
@@ -21,3 +22,5 @@ Route::post('/register', Register::class);
 
 Route::view('/login', 'components.login');
 Route::post('/login', Login::class);
+
+Route::post('/logout', LogoutController::class);
