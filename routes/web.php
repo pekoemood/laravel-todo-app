@@ -10,17 +10,22 @@ use Illuminate\Support\Facades\Route;
 //     return view('welcome');
 // });
 
-Route::get('/', [TodoController::class, 'index'])->name('todo.index');
-Route::post('/todos', [TodoController::class, 'store']);
-Route::delete('/todos/{todo}', [TodoController::class, 'destroy'])->name('todos.destroy');
-Route::put('/todos/{todo}', [TodoController::class, 'update'])->name('todos.update');
-Route::patch('/todos/{todo}/toggle', [TodoController::class, 'toggle']);
 
 
 Route::view('/register', 'components.register');
 Route::post('/register', Register::class);
 
-Route::view('/login', 'components.login');
+Route::view('/login', 'components.login')->name('login');
 Route::post('/login', Login::class);
 
 Route::post('/logout', LogoutController::class);
+
+
+Route::middleware('auth')->group(function () {
+    Route::get('/', [TodoController::class, 'index'])->name('todo.index');
+    Route::post('/todos', [TodoController::class, 'store']);
+    Route::delete('/todos/{todo}', [TodoController::class, 'destroy'])->name('todos.destroy');
+    Route::put('/todos/{todo}', [TodoController::class, 'update'])->name('todos.update');
+    Route::patch('/todos/{todo}/toggle', [TodoController::class, 'toggle']);
+});
+
