@@ -12,15 +12,14 @@ class TodoController extends Controller
 {
     public function index(Request $request): View
     {
-        $todos = Todo::all();
+        $todos = $request->user()->todos()->get();
 
         return view('components.todo', compact('todos'));
     }
 
     public function store(StoreTodoRequest $request): RedirectResponse
     {
-
-        Todo::create($request->validated());
+        $request->user()->todos()->create($request->validated());
 
         return redirect()->route('todo.index');
     }
