@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreTodoRequest;
+use App\Http\Requests\updateTodoRequest;
 use App\Models\Todo;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -31,17 +32,10 @@ class TodoController extends Controller
         return redirect('/');
     }
 
-    public function update(Request $request, Todo $todo)
+    public function update(updateTodoRequest $request, Todo $todo)
     {
-        $validated = $request->validate([
-            'title' => ['string', 'required', 'max:255'],
-            'description' => ['string', 'required', 'max:255'],
-        ]);
-
-        $todo->title = $validated['title'];
-        $todo->description = $validated['description'];
-        $todo->save();
-
+        //Policyを適用することでさらに安全に書ける
+        $todo->update($request->validated());
         return redirect('/');
     }
 
