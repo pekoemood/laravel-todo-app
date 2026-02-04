@@ -7,6 +7,7 @@ use App\Http\Requests\updateTodoRequest;
 use App\Models\Todo;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\View\View;
 
 class TodoController extends Controller
@@ -32,9 +33,10 @@ class TodoController extends Controller
         return redirect('/');
     }
 
-    public function update(updateTodoRequest $request, Todo $todo)
+    public function update(updateTodoRequest $request, Todo $todo): RedirectResponse
     {
-        //Policyを適用することでさらに安全に書ける
+        Gate::authorize('update-todo', $todo);
+
         $todo->update($request->validated());
         return redirect('/');
     }
