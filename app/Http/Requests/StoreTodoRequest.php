@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class StoreTodoRequest extends FormRequest
 {
@@ -23,7 +24,8 @@ class StoreTodoRequest extends FormRequest
     {
         return [
             'title' => 'required|string|max:255',
-            'description' => 'required|string|max:255',
+            'description' => 'nullable|string|max:255',
+            'due_date' => ['nullable','date', Rule::date()->afterToday()],
         ];
     }
 
@@ -34,6 +36,8 @@ class StoreTodoRequest extends FormRequest
             'title.string' => 'タイトルは文字やで！',
             'title.max' => 'タイトルは255文字までやで!',
             'description.required' => '内容は必須やで!',
+            'due_date.date' => '日付である必要があるよ！',
+            'due_date.afterToday' => '期限は明日行こうの日付にしてね',
         ];
     }
 }

@@ -11,7 +11,7 @@ class Todo extends Model
     use HasFactory;
 
     protected $fillable = [
-        'title', 'description', 'is_complete',
+        'title', 'description', 'is_complete', 'due_date'
     ];
 
     public function user(): BelongsTo
@@ -21,6 +21,9 @@ class Todo extends Model
 
     protected function casts(): array
     {
-        return ['is_complete' => 'boolean'];
+        return ['is_complete' => 'boolean',
+                'due_date' => 'date'
+            ];
+
     }
 }
