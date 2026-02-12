@@ -23,8 +23,9 @@ class Todo extends Model
 
     protected function casts(): array
     {
-        return ['is_complete' => 'boolean',
-                'due_date' => 'date'
+        return [
+            'is_complete' => 'boolean',
+            'due_date' => 'date'
             ];
 
     }

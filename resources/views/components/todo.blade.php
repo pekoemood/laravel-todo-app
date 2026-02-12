@@ -30,6 +30,10 @@
                                     </p>
                                 @endif
                             </div>
+                            <div class="flex gap-2">
+                                <span>期日</span>
+                                <span>{{ $todo->due_date?->format('Y/m/d') ?? '未設定' }}</span>
+                            </div>
                         </div>
                         <div class="flex gap-2 mt-4 pt-3 border-t border-gray-100">
                             <button
